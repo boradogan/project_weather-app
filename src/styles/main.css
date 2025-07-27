@@ -1,0 +1,87 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+:root {
+  --primary-color: #003366;    /* The navy blue from our logo */
+  --accent-color: #D4AF37;     /* The gold from our logo */
+  --background-color: #ececec; /* A light, official-looking grey */
+  --text-color: #333333;        /* A dark grey for text */
+  --error-color: #B22222;       /* A standard red for form errors */
+  --header-height: 150px;
+  font-size: 16px;
+  line-height: 1.7rem;
+}
+
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-family: sans-serif;
+}
+
+.page-container{
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+nav{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.search-bar{
+    flex-basis: 200px;
+    height: 2rem;
+    margin-left: auto;
+    margin-right: 20px;
+    background-color: #c9c2aa;
+}
+
+main{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+}
+.last-searches {
+    flex-basis: 100px;
+}
+
+
+.main-app{
+    flex: 1;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 200px 300px;
+}
+
+
+.detailed-view{
+    grid-column: 1/3;
+
+}
+
+.current-weather-container{
+    display: flex;
+    flex-direction: row;
+}
+.current-weather-container  p.temperature {
+    font-size: 2rem;
+    font-weight: 700px;
+
+}
+.current-weather-container  p.resolved-address {
+    font-size: 1rem;
+
+}
