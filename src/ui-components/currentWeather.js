@@ -54,14 +54,17 @@ export class currentWeatherComponent{
 
             console.log(iconMap[currentWeatherData[elementKey]]);
         }
+        this.#show();
 
     }
 
-    hide(){
+    #hide(){
+        this.#element.classList.add('hidden');
 
     }
 
-    show() {
+    #show() {
+        this.#element.classList.remove('hidden');
 
     }
 

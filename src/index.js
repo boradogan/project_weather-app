@@ -52,7 +52,7 @@ async function getAndDisplayData(cityName = "london") {
         ui.currentWeather.updateWithData(weatherData);
         
     } catch (error) {
-        console.error('could get or display the data', error);
+        alert(`${cityName} not found!`)
         
     }
     
