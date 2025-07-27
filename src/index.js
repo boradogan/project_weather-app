@@ -35,21 +35,27 @@ async function getAndDisplayData(cityName = "london") {
     // const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${cityName}?unitGroup=metric&key=${API_KEY}&contentType=json`;
     // console.log(url);
     // console.log(londonWeather);
+    try {
+        const cleanWeatherData = await getWeatherData(cityName, true);
+        console.log(cleanWeatherData)
+        const weatherData = {
     
-    const cleanWeatherData = await getWeatherData(cityName, true);
-    console.log(cleanWeatherData)
-    const weatherData = {
-
-        //textContent
-        resolvedAddress: cleanWeatherData.resolvedAddress.address,
-        temperature: `${cleanWeatherData.current.temp}°C`,
-        conditionText: cleanWeatherData.current.conditions,
-
-        //src 
-        icon: cleanWeatherData.current.icon
+            //textContent
+            resolvedAddress: cleanWeatherData.resolvedAddress.address,
+            temperature: `${cleanWeatherData.current.temp}°C`,
+            conditionText: cleanWeatherData.current.conditions,
+    
+            //src 
+            icon: cleanWeatherData.current.icon
+        }
+        console.log(weatherData);
+        ui.currentWeather.updateWithData(weatherData);
+        
+    } catch (error) {
+        console.error('could get or display the data', error);
+        
     }
-    console.log(weatherData);
-    ui.currentWeather.updateWithData(weatherData);
+    
 
     
 

@@ -18,17 +18,25 @@ export const weatherDataCache = {
     }
 
     // --- Cache Miss ---
-    console.log(`Fetching ${cityName} from API.`);
-    const newData = await weatherApi(cityName);
-    
-    // If the cache is full, remove the least recently used item (the first one)
-    if (this.cache.size >= this.maxSize) {
-      const oldestKey = this.cache.keys().next().value;
-      this.cache.delete(oldestKey);
-      console.log(`Cache full. Evicting ${oldestKey}.`);
+    try {
+        console.log(`Fetching ${cityName} from API.`);
+        const newData = await weatherApi(cityName);
+        console.log(newData);
+        
+        // If the cache is full, remove the least recently used item (the first one)
+        if (this.cache.size >= this.maxSize) {
+          const oldestKey = this.cache.keys().next().value;
+          this.cache.delete(oldestKey);
+          console.log(`Cache full. Evicting ${oldestKey}.`);
+        }
+        console.log('putting the city in cache')
+        this.cache.set(cityName, newData);
+        return newData;
+        
+    } catch (error) {
+        console.log('couldnt fetch')
+        throw error
+        
     }
-
-    this.cache.set(cityName, newData);
-    return newData;
   }
 };
