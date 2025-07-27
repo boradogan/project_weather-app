@@ -4,7 +4,7 @@ import { processWeather } from "./dataProcessor";
 
 
 
-export async function getandDisplayWeather(cityName, isProcessed = true) {
+export async function getWeatherData(cityName, isProcessed = true) {
     const rawData = await weatherApiMock(cityName);
     let cleanData
     if(isProcessed){

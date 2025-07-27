@@ -2,7 +2,7 @@
 export const processWeather = (weatherData) => {
     let cleanData = {
         searchedAddress: weatherData.address,
-        resolvedAdress: {
+        resolvedAddress: {
             address: weatherData.resolvedAddress,
             latitude: weatherData.latitude,
             longitude: weatherData.longitude

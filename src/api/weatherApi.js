@@ -3,7 +3,7 @@ import { londonWeather } from "../mockData";
 const API_KEY = "JJ6WZBUZTTL8NLURYSBYC9FTF";
 
 
-export const weatherApi = async (cityName) => {
+export async function weatherApi(cityName){
     const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${cityName}?unitGroup=metric&key=${API_KEY}&contentType=json`;
     console.log(`Calling the API: for ${cityName}`);
 
