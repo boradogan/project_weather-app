@@ -58,6 +58,7 @@ nav{
     width: 100%;
     min-width: 50px;
     padding: 0.5rem 10px;
+    font-size: 1rem;
     border: none;
     border-radius: 5px;
     background-color: var(--background-color);
@@ -107,6 +108,7 @@ main{
 }
 .current-weather-container .weather-icon {
     width: 150px;
+    height: 150px;
 
 }
 .current-weather-container .weather-icon img {

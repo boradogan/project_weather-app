@@ -1,27 +1,33 @@
 
 console.log('Selamun Aleykum Dunya')
 import "./styles/main.css"
-import { londonWeather } from "./mockData";
-import { weatherApi } from "./api/weatherApi";
-import { getWeatherData } from "./logic/appLogic";
+import { appLogic, getWeatherData } from "./logic/appLogic";
 import { ui } from "./ui-components/ui";
 
+const logic = new appLogic();
 
 const apiTest = () => {
-    console.log(getWeatherData('london', true));
+    console.log(logic.getWeatherData('london', false));
 }
 
 
-window.app = {
-    getAndDisplayData,
-    apiTest
-}
+
 
 const main = (() => {
+    
     console.log('test')
-    document.addEventListener('search-submit', (event) => {
-        const searchText = event.detail["search-bar-text"];
-        getAndDisplayData(searchText);
+    document.addEventListener('search-submit', async (event) => {
+        const cityName = event.detail["search-bar-text"];
+        try {
+            const cleanWeatherData = await logic.getWeatherData(cityName, true);
+            const currentWeatherData = logic.parseCurrentWeatherData(cleanWeatherData);
+            ui.currentWeather.updateWithData(currentWeatherData);
+
+
+        } catch (error) {
+            alert(`${cityName} not found!`);
+            
+        }
 
     })
 
@@ -29,34 +35,40 @@ const main = (() => {
 
 
 
-async function getAndDisplayData(cityName = "london") {
-    // const cityName = "london";
-    // const API_KEY = "JJ6WZBUZTTL8NLURYSBYC9FTF";
-    // const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${cityName}?unitGroup=metric&key=${API_KEY}&contentType=json`;
-    // console.log(url);
-    // console.log(londonWeather);
-    try {
-        const cleanWeatherData = await getWeatherData(cityName, true);
-        console.log(cleanWeatherData)
-        const weatherData = {
+// async function getAndDisplayData(cityName = "london") {
+//     // const cityName = "london";
+//     // const API_KEY = "JJ6WZBUZTTL8NLURYSBYC9FTF";
+//     // const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${cityName}?unitGroup=metric&key=${API_KEY}&contentType=json`;
+//     // console.log(url);
+//     // console.log(londonWeather);
+//     try {
+//         const cleanWeatherData = await logic.getWeatherData(cityName, true);
+//         console.log(cleanWeatherData)
+//         const currentWeatherData = {
     
-            //textContent
-            resolvedAddress: cleanWeatherData.resolvedAddress.address,
-            temperature: `${cleanWeatherData.current.temp}°C`,
-            conditionText: cleanWeatherData.current.conditions,
+//             //textContent
+//             resolvedAddress: cleanWeatherData.resolvedAddress.address,
+//             temperature: `${cleanWeatherData.current.temp}°C`,
+//             conditionText: cleanWeatherData.current.conditions,
     
-            //src 
-            icon: cleanWeatherData.current.icon
-        }
-        console.log(weatherData);
-        ui.currentWeather.updateWithData(weatherData);
+//             //src 
+//             icon: cleanWeatherData.current.icon
+//         }
+//         console.log(currentWeatherData);
+//         ui.currentWeather.updateWithData(currentWeatherData);
         
-    } catch (error) {
-        alert(`${cityName} not found!`)
+//     } catch (error) {
+//         alert(`${cityName} not found!`)
         
-    }
+//     }
     
 
     
 
+// }
+
+
+window.app = {
+    getAndDisplayData,
+    apiTest
 }

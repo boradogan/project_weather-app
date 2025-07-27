@@ -13,6 +13,7 @@ export class currentWeatherComponent{
     }
 
     #renderComponent() {
+        // Find the template of the component from template.html 
         const template = document.getElementById('current-weather-template');
         const clone = template.content.cloneNode(true);
         this.#element = clone.querySelector('.current-weather-container');
@@ -23,6 +24,7 @@ export class currentWeatherComponent{
     }
 
     #initDataInputElements() {
+        // Find and index the elements that needs to be updated with data from parent components
         this.#dataInputTextElements.resolvedAddress = this.#element.querySelector(".resolved-address");
         this.#dataInputTextElements.temperature = this.#element.querySelector('.temperature');
         this.#dataInputTextElements.conditionText = this.#element.querySelector('.condition-text');

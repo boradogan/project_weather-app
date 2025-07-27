@@ -1,28 +1,52 @@
-import { weatherApi, weatherApiMock } from "../api/weatherApi";
+
 import { weatherDataCache } from "../cache/lruCache";
-import { londonWeather } from "../mockData";
+
 import { processWeather } from "./dataProcessor";
 
+export class appLogic {
+    #cleanData = null
+    constructor(){
 
-
-export async function getWeatherData(cityName, isProcessed = true) {
-    // const rawData = await weatherApi(cityName);
-    try {
-        const rawData = await weatherDataCache.get(cityName);
-        let cleanData
-        if(isProcessed){
-            cleanData = processWeather(rawData);
-        } else {
-            cleanData = rawData;
-        }
-        
-        return cleanData;
-        
-    } catch (error) {
-        console.error('error getting weather data', error)
-        throw error;
-
-        
     }
+    async getWeatherData(cityName, isProcessed = true) {
+        // const rawData = await weatherApi(cityName);
+        try {
+            const rawData = await weatherDataCache.get(cityName);
+            if(isProcessed){
+                this.#cleanData = processWeather(rawData);
+            } else {
+                this.#cleanData = rawData;
+            }
+            
+            return this.#cleanData;
+            
+        } catch (error) {
+            console.error('error getting weather data', error)
+            throw error;
+
+            
+        }
+    
+    }
+    parseCurrentWeatherData(cleanData) {
+        if(!cleanData) {
+            throw new Error("Weather data not read yet");
+            
+
+        }
+        // Returns the needed data for 
+        return {
+    
+            //textContent
+            resolvedAddress: cleanData.resolvedAddress.address,
+            temperature: `${cleanData.current.temp}°C`,
+            conditionText: cleanData.current.conditions,
+    
+            //src 
+            icon: cleanData.current.icon
+        }
+
+    }
+
 }
 

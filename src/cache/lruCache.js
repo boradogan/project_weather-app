@@ -2,7 +2,7 @@ import { weatherApi } from "../api/weatherApi";
 
 export const weatherDataCache = {
   cache: new Map(), // Use a Map to preserve order
-  maxSize: 5,       // Set a maximum number of items to cache
+  maxSize: 15,       // Set a maximum number of items to cache
 
   async get(cityName) {
     // --- Cache Hit ---
