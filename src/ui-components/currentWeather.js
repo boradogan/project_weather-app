@@ -27,17 +27,18 @@ export class currentWeatherComponent{
         this.#dataInputTextElements.temperature = this.#element.querySelector('.temperature');
         this.#dataInputTextElements.conditionText = this.#element.querySelector('.condition-text');
         
-        this.#dataInputIconElements.weatherIcon = this.#element.querySelector('.weather-icon img');
+        this.#dataInputIconElements.icon = this.#element.querySelector('.weather-icon img');
         console.log(this.#dataInputTextElements)
     }
 
     updateWithData(currentWeatherData){
+        // update text based elements
         for (const elementKey in this.#dataInputTextElements) {
             this.#dataInputTextElements[elementKey].textContent = currentWeatherData[elementKey];
             console.log('updating Data');
         }
 
-
+        // update url based elements
         for (const elementKey in this.#dataInputIconElements) {
             let newSource
             console.log(elementKey)

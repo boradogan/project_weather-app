@@ -40,12 +40,12 @@ nav{
     flex-direction: row;
     align-items: center;
 }
-.search-bar{
+#search-bar-component{
     flex-basis: 200px;
     height: 2rem;
     margin-left: auto;
     margin-right: 20px;
-    background-color: #c9c2aa;
+
 }
 
 main{
@@ -75,6 +75,7 @@ main{
 .current-weather-container{
     display: flex;
     flex-direction: row;
+    gap: 10px;
 }
 .current-weather-container .weather-icon {
     width: 150px;

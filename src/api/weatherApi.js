@@ -20,8 +20,6 @@ export async function weatherApi(cityName){
     } catch (error) {
         console.error('Error fetching weather data:', error);
         throw new Error('weatherApi failed', error);
-        
-        
     }
     
 }
