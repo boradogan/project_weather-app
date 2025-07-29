@@ -94,6 +94,7 @@ main{
     display: grid;
     grid-template-columns: 2fr 1fr;
     grid-template-rows: 200px 300px;
+    margin: 10px 0;
 }
 
 

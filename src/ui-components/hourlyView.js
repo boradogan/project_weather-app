@@ -1,4 +1,3 @@
-// src/ui-components/hourlyView.js
 import Chart from 'chart.js/auto'; // Import the library
 
 export class hourlyViewComponent {
