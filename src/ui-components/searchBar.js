@@ -27,7 +27,7 @@ export class searchBarComponent {
         this.#form.addEventListener('submit', (event) => {
             event.preventDefault();
             const formData = new FormData(this.#form);
-            console.log(formData)
+            // console.log(formData)
             const customEvent = new CustomEvent('search-submit', {
                 bubbles: true,
                 detail: Object.fromEntries(formData.entries())

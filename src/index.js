@@ -20,12 +20,17 @@ const main = (() => {
         const cityName = event.detail["search-bar-text"];
         try {
             const cleanWeatherData = await logic.getWeatherData(cityName, true);
+            console.log('Printing clean weather data')
+            console.log(cleanWeatherData);
             const currentWeatherData = logic.parseCurrentWeatherData(cleanWeatherData);
             ui.currentWeather.updateWithData(currentWeatherData);
 
+            ui.dayList.updateWithData(cleanWeatherData.days);
+
 
         } catch (error) {
-            alert(`${cityName} not found!`);
+            // alert(`${cityName} not found!`);
+            console.error(error)
             
         }
 
@@ -69,6 +74,5 @@ const main = (() => {
 
 
 window.app = {
-    getAndDisplayData,
     apiTest
 }
