@@ -1,6 +1,6 @@
 import { londonWeather } from "../mockData";
 
-const API_KEY = "JJ6WZBUZTTL8NLURYSBYC9FTF";
+const API_KEY = "JJ6WZBUZTTL8NLURYSBYC9FTF"; // I know it's leaked :)
 
 
 export async function weatherApi(cityName){
