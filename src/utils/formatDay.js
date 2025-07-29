@@ -1,4 +1,3 @@
-// Import the necessary functions from the library
 import { format, isToday, isTomorrow, parseISO } from 'date-fns';
 
 export function formatDay(dateString) {
