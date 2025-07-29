@@ -25,7 +25,7 @@ const main = (() => {
             const currentWeatherData = logic.parseCurrentWeatherData(cleanWeatherData);
             ui.currentWeather.updateWithData(currentWeatherData);
 
-            ui.dayList.updateWithData(cleanWeatherData.days);
+            ui.dayList.updateWithData(cleanWeatherData.days.slice(0, 8));
 
 
         } catch (error) {
