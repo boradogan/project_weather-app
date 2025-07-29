@@ -5,10 +5,11 @@ import { processWeather } from "./dataProcessor";
 
 export class appLogic {
     #cleanData = null
+    #weatherData;
     constructor(){
 
     }
-    async getWeatherData(cityName, isProcessed = true) {
+    async fetchWeatherData(cityName, isProcessed = true) {
         // const rawData = await weatherApi(cityName);
         try {
             const rawData = await weatherDataCache.get(cityName);
@@ -17,7 +18,7 @@ export class appLogic {
             } else {
                 this.#cleanData = rawData;
             }
-            
+            this.#weatherData = this.#cleanData;
             return this.#cleanData;
             
         } catch (error) {
@@ -28,6 +29,17 @@ export class appLogic {
             
         }
     
+    }
+
+    get weatherData() {
+        return this.#weatherData;
+    }
+
+
+    getDayDataFromDate(weatherData, datetime) {
+        return weatherData.days.find(dayData => dayData.datetime === datetime);
+
+
     }
     parseCurrentWeatherData(cleanData) {
         if(!cleanData) {

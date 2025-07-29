@@ -1,7 +1,7 @@
 
 console.log('Selamun Aleykum Dunya')
 import "./styles/main.css"
-import { appLogic, getWeatherData } from "./logic/appLogic";
+import { appLogic, fetchWeatherData } from "./logic/appLogic";
 import { ui } from "./ui-components/ui";
 import { formatHourlyData } from "./logic/dataProcessor";
 
@@ -20,7 +20,7 @@ const main = (() => {
     document.addEventListener('search-submit', async (event) => {
         const cityName = event.detail["search-bar-text"];
         try {
-            const cleanWeatherData = await logic.getWeatherData(cityName, true);
+            const cleanWeatherData = await logic.fetchWeatherData(cityName, true);
             console.log('Printing clean weather data')
             console.log(cleanWeatherData);
             const currentWeatherData = logic.parseCurrentWeatherData(cleanWeatherData);
@@ -28,13 +28,25 @@ const main = (() => {
 
             ui.dayList.updateWithData(cleanWeatherData.days.slice(0, 8));
 
-            ui.hourlyView.update(formatHourlyData(cleanWeatherData.days[0]))
+            // ui.hourlyView.update(formatHourlyData(cleanWeatherData.days[0]))
         } catch (error) {
             // alert(`${cityName} not found!`);
             console.error(error)
             
         }
 
+    })
+
+
+
+    document.addEventListener('daySelected', (event) => {
+        const {datetime} = event.detail;
+        // console.log(datetime);
+        const weatherData = logic.weatherData;
+        // console.log(weatherData);
+        const dayData = logic.getDayDataFromDate(weatherData, datetime)
+        // console.log(dayData);
+        ui.hourlyView.update(formatHourlyData(dayData));
     })
 
 })()

@@ -163,6 +163,11 @@ main{
   
 
 }
+.day-list-item-container.active {
+background: #D4AF37;
+  
+
+}
 
 
 .day-list-item_icon {
