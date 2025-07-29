@@ -22,6 +22,7 @@ export class appLogic {
             
         } catch (error) {
             console.error('error getting weather data', error)
+            alert(`${cityName} not found.`)
             throw error;
 
             

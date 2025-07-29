@@ -3,6 +3,7 @@ console.log('Selamun Aleykum Dunya')
 import "./styles/main.css"
 import { appLogic, getWeatherData } from "./logic/appLogic";
 import { ui } from "./ui-components/ui";
+import { formatHourlyData } from "./logic/dataProcessor";
 
 const logic = new appLogic();
 
@@ -27,7 +28,7 @@ const main = (() => {
 
             ui.dayList.updateWithData(cleanWeatherData.days.slice(0, 8));
 
-
+            ui.hourlyView.update(formatHourlyData(cleanWeatherData.days[0]))
         } catch (error) {
             // alert(`${cityName} not found!`);
             console.error(error)

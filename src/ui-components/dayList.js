@@ -1,6 +1,6 @@
 import { iconMap } from "../utils/iconMap";
 import { formatDay } from "../utils/formatDay";
-import { format } from "date-fns";
+
 
 export class dayListComponent {
     #parent = document.getElementById('day-list-component');
@@ -25,15 +25,10 @@ export class dayListComponent {
 
 
 
-        // For now dayListData will be a dummy array
+        // For each item in the list create a component
         dayListData.forEach(dayData => {
-            const parsedDayData = {
-                datetime: dayData.datetime,
-                tempmin: dayData.tempmin,
-                tempmax: dayData.tempmax,
-                icon: dayData.icon
-            }
-            const dayItem = new dayListItemComponent(parsedDayData);
+            
+            const dayItem = new dayListItemComponent(dayData);
             // console.log(this.#element)
             //  console.log(dayItem)
             this.#element.appendChild(dayItem.getElement());

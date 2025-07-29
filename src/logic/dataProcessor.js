@@ -23,3 +23,21 @@ export const processWeather = (weatherData) => {
 
 
 }
+
+
+
+
+// Inside dataProcessor.js
+
+export function formatHourlyData(dayObject) {
+  // `dayObject` is one of the items from the `days` array in your API response
+  
+  const labels = dayObject.hours.map(hour => {
+    // Extracts the hour, e.g., "13:00"
+    return hour.datetime.slice(0, 5); 
+  });
+
+  const data = dayObject.hours.map(hour => hour.temp);
+
+  return { labels, data };
+}
